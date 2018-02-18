@@ -29,6 +29,16 @@
     <h1 align="center">Найденные книги</h1>
 </c:if>
 <div align="center">
+    <c:if test="${listBooks.size() != 0}">
+        <table>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="/bookmanager/search"><input type="submit" value="Назад к поиску" class="button"></a>
+                    <a href="/bookmanager/list"><input type="button" value="Назад к списку" class="button"></a>
+                </td>
+            </tr>
+        </table>
+    </c:if>
     <table class="table" border="1" <c:if test="${listBooks.size() == 0}">hidden="hidden"</c:if>>
         <th>ID</th>
         <th>Название</th>
@@ -53,7 +63,7 @@
                     <td align="center">
                         Не прочитана
                         <a href="/bookmanager/updateread?id=${book.id}"><input type="button" align="center"
-                                                                               value="Прочитано"></a>
+                                                                               value="Прочитать"></a>
                     </td>
                 </c:if>
                 <td>

@@ -1,6 +1,7 @@
 package com.gre4o.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 
 @Entity
 @Table(name = "book")
@@ -22,6 +23,7 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
+    @Digits(integer = 4,fraction = 4)
     @Column(name = "printYear")
     private int printYear;
 
@@ -71,7 +73,6 @@ public class Book {
     public int getPrintYear() {
         return printYear;
     }
-
     public void setPrintYear(int printYear) {
         this.printYear = printYear;
     }

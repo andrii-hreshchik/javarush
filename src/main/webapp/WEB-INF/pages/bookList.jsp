@@ -73,12 +73,15 @@
                 <c:if test="${book.readAlready == false}">
                     <td align="center">
                         Не прочитана
-                        <a href="/bookmanager/updateread?id=${book.id}"><input type="button" align="center"
-                                                                               value="Прочитано"></a>
+                        <a href="${pageContext.request.contextPath}/bookmanager/updateread?id=${book.id}"><input
+                                type="button" align="center"
+                                value="Прочитать"></a>
                     </td>
                 </c:if>
                 <td>
-                    <a href="/bookmanager/edit?id=${book.id}"><input type="button" align="center" value="Редактировать"></a>
+                    <a href="${pageContext.request.contextPath}/bookmanager/edit?id=${book.id}"><input type="button"
+                                                                                                       align="center"
+                                                                                                       value="Редактировать"></a>
                     <a href="/bookmanager/delete/${book.id}"><input type="button" align="center" value="Удалить"></a>
                 </td>
             </tr>

@@ -1,10 +1,12 @@
 package com.gre4o.controller;
 
+import javax.validation.Valid;
 import com.gre4o.model.Book;
 import com.gre4o.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +33,7 @@ public class BookController {
             page = 1;
         }
         modelAndView.addObject("page", page);
-        if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+        if (page < 1 || page > pagedListHolder.getPageCount()) {
             pagedListHolder.setPage(0);
             modelAndView.addObject("listBook", pagedListHolder.getPageList());
         } else if (page <= pagedListHolder.getPageCount()) {
@@ -49,15 +51,16 @@ public class BookController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView saveBook(@ModelAttribute(value = "book") Book book) throws UnsupportedEncodingException {
+    public ModelAndView saveBook(@Valid @ModelAttribute(value = "book") Book book, BindingResult bindingResult) throws UnsupportedEncodingException {
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("/error");
+        }
         book.setAuthor(new String(book.getAuthor().getBytes("ISO-8859-1"), "UTF-8"));
         book.setDescription(new String(book.getDescription().getBytes("ISO-8859-1"), "UTF-8"));
         book.setTitle(new String(book.getTitle().getBytes("ISO-8859-1"), "UTF-8"));
-        book.setPrintYear(book.getPrintYear());
+        book.setIsbn(new String(book.getIsbn().getBytes("ISO-8859-1"), "UTF-8"));
         bookService.createBook(book);
         return new ModelAndView("redirect:/bookmanager/list");
-
-
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -99,10 +102,14 @@ public class BookController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public ModelAndView updateBook(@ModelAttribute(value = "book") Book book) throws UnsupportedEncodingException {
+    public ModelAndView updateBook(@Valid @ModelAttribute(value = "book") Book book, BindingResult bindingResult) throws UnsupportedEncodingException {
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("/error");
+        }
         book.setAuthor(new String(book.getAuthor().getBytes("ISO-8859-1"), "UTF-8"));
         book.setDescription(new String(book.getDescription().getBytes("ISO-8859-1"), "UTF-8"));
         book.setTitle(new String(book.getTitle().getBytes("ISO-8859-1"), "UTF-8"));
+        book.setIsbn(new String(book.getIsbn().getBytes("ISO-8859-1"), "UTF-8"));
         bookService.updateBook(book);
         return new ModelAndView("redirect:/bookmanager/list");
     }

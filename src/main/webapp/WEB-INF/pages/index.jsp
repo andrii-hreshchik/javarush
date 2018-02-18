@@ -14,7 +14,7 @@
             font-weight: bold;
         }
 
-        .p1 {
+        .page {
             color: #000000;
             text-align: center;
             font-family: 'Verdana', serif;
@@ -27,7 +27,7 @@
     <b>Book Manager</b>
 </div>
 
-<div class="p1">
+<div class="page">
     <p align="center">
         Вы будете перенаправлены к списку книг через 10 секунд
     </p>

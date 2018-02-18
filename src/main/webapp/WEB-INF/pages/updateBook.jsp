@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" language="java" %>
-<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
@@ -14,6 +14,7 @@
             text-align: center;
             line-height: 1cm;
         }
+
         .table {
             font-size: 12px;
             border: 1px black;
@@ -34,22 +35,23 @@
             </tr>
             <tr>
                 <td>Название книги:</td>
-                <td><form:input path="title"/></td>
+                <td><form:input path="title" maxlength="100"/></td>
             </tr>
             <tr>
                 <td>Описание:</td>
-                <td><form:input path="description"/></td>
+                <td><form:input path="description" maxlength="255"/></td>
             </tr>
             <tr>
-                <form:hidden path="author"/>
+                <td>Автор:</td>
+                <td><form:input path="author" maxlength="100"/></td>
             </tr>
             <tr>
                 <td>ISBN:</td>
-                <td><form:input path="isbn"/></td>
+                <td><form:input path="isbn" maxlength="20"/></td>
             </tr>
             <tr>
                 <td>Год издания:</td>
-                <td><form:input path="printYear"/></td>
+                <td><form:input path="printYear" maxlength="4"/></td>
             </tr>
             <form:hidden path="readAlready"/>
             <tr>
