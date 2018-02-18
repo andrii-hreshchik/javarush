@@ -8,7 +8,7 @@
     <style type="text/css">
         body {
             margin: 5mm;
-            background: white;
+            background: white;v
             font-family: Verdana, serif;
             font-size: 12px;
             text-align: center;

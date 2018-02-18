@@ -79,9 +79,11 @@
                     </td>
                 </c:if>
                 <td>
+                    <c:if test="${book.readAlready == false}">
                     <a href="${pageContext.request.contextPath}/bookmanager/edit?id=${book.id}"><input type="button"
                                                                                                        align="center"
                                                                                                        value="Редактировать"></a>
+                    </c:if>
                     <a href="/bookmanager/delete/${book.id}"><input type="button" align="center" value="Удалить"></a>
                 </td>
             </tr>
